@@ -152,9 +152,7 @@ app.get("/api/properties", async (req, res) => {
 
 app.get("/api/properties/:id/:user_id", async (req, res) => {
   const { id, user_id } = req.params;
-  console.log(user_id);
 
-  console.log(id, "this is id");
   try {
     const result = await pool.query(
       "SELECT * FROM properties WHERE property_id = $1",
