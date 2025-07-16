@@ -1,0 +1,19 @@
+.search-component {
+  display: flex;
+  height: 55px;
+  width: 516px;
+  border-radius: 10px;
+  align-items: center;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+
+}
+
+.search-input{
+  width: 434px;
+  height: 24px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
