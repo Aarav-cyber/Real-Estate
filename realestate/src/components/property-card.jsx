@@ -27,7 +27,7 @@ const PropertyCard = ({
         img,
         location,
         price,
-        size_sqft,
+        size_sqft, 
         longitude,
         latitude,
         bedrooms,

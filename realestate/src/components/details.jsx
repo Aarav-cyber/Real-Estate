@@ -64,7 +64,27 @@ const Details = () => {
     fetchData(id);
   }, [id, user_id]);
 
-  //for comments useEffect
+
+  
+// for favorites
+  const handleFavorite = async () => {
+    setIsFavorite(true);
+    const response = await fetch("http://localhost:3001/api/favorites", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ user_id, property_id: property.property_id }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+
+    if (!data.status) {
+      console.log(!data.status);
+      setIsFavorite(false);
+    }
+  };
+
+    //for comments useEffect
   useEffect(() => {
     if (!property.property_id) return;
 
@@ -73,22 +93,6 @@ const Details = () => {
       .then((data) => setComments(data));
   }, [property.property_id]);
 
-  const handleFavorite = async () => {
-    setIsFavorite(true);
-    const res = await fetch("http://localhost:3001/api/favorites", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user_id, property_id: property.property_id }),
-    });
-
-    const data = await res.json();
-    console.log(data);
-
-    if (!data.status) {
-      console.log(!data.status);
-      setIsFavorite(false);
-    }
-  };
   //to handle comments async function
 const handleAddComment = async (parent_id = null, content = null) => {
   const user_id = localStorage.getItem("user_id");
@@ -239,7 +243,7 @@ const handleAddComment = async (parent_id = null, content = null) => {
             placeholder="Join the conversation..."
             className="border p-2 w-full mb-2"
           />
-          <button onClick={() => handleAddComment()} className="btn">
+          <button onClick={() => handleAddComment()} className=" POST btn">
             Post
           </button>
           <hr className="line" />

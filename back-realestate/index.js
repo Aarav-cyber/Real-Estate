@@ -150,6 +150,7 @@ app.get("/api/properties", async (req, res) => {
   }
 });
 
+//this is to get the details about the property in the details page
 app.get("/api/properties/:id/:user_id", async (req, res) => {
   const { id, user_id } = req.params;
 
@@ -193,7 +194,7 @@ app.post("/api/favorites", async (req, res) => {
     [property_id, user_id]
   );
 
-  if (results.rows.length === 0) {
+  if (results.rows.length === 0) {// if there is not that property_id then add it 
     try {
       await pool.query(
         "INSERT INTO favorites (user_id, property_id) VALUES ($1, $2) ON CONFLICT DO NOTHING",
@@ -211,7 +212,7 @@ app.post("/api/favorites", async (req, res) => {
       });
     }
   } else {
-    try {
+    try { 
       await pool.query(
         "DELETE FROM favorites WHERE user_id = $1 AND property_id = $2",
         [user_id, property_id]
@@ -257,6 +258,7 @@ app.get("/api/favorites/:user_id", async (req, res) => {
       [user_id]
     );
     res.json(result.rows);
+    console.log(json(result.rows));
   } catch (err) {
     console.error("Fetch favorites error:", err);
     res.status(500).send("Failed to fetch favorites");
