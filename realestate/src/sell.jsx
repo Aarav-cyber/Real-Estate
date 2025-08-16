@@ -23,7 +23,6 @@ const Sell = () => {
     googleMapsApiKey: "AIzaSyBnYYbpWHGiQygel5ybHF0vDaZPyt7Yy3s", // Replace with a real key
     libraries: ["places"], // 👈 This is required for Autocomplete to work
   });
-  
 
   const onSubmit = async (propertyData) => {
     const formData = new FormData();
@@ -33,6 +32,9 @@ const Sell = () => {
       formData.append(key, value);
     });
 
+    // Append latitude and longitude
+    formData.append("latitude", location.lat);
+    formData.append("longitude", location.lng);
 
     // Append images
     images.forEach((img) => {
@@ -56,7 +58,7 @@ const Sell = () => {
 
   return (
     <div className="flex">
-      <Sidebar/>
+      <Sidebar />
 
       <div className="pl-64 pt-4 main-content">
         <h2 className="mb-6 text-2xl font-bold">

@@ -17,10 +17,10 @@ const Favorites = () => {
     <div className="flex">
       <Sidebar />
 
-      <div className="pl-64 pt-4">
+      <div className="pl-6 pt-4">
         <h1 className="title">Favorites</h1>
 
-        <div className=" flex flex-wrap   gap-12 ">
+        <div className="  flex flex-wrap   gap-12 ">
           {favorites.map((item) => (
             <PropertyCard
               key={item.property_id}
