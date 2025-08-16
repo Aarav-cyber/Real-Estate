@@ -96,7 +96,7 @@ app.post("/api/sell", upload.array("images"), async (req, res) => {
     bathrooms,
     kitchen,
     size_sqft,
-    phone,
+    phone
   } = req.body;
 
   const image_urls =
